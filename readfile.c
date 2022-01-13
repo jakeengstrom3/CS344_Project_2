@@ -14,4 +14,5 @@ int main(int argc, char *argv[]){
     int fd = open(filename, O_RDONLY);
     size_t count = read(fd, buff, 2048);
     write(1, buff, count);
+    close(fd);
 }
