@@ -31,7 +31,7 @@ void print_files(int num_files, char *argv[]){
         filename = argv[i+1];
         fd = open(filename, O_RDONLY);
         if(fd == -1){
-            printf("\nFile #%d: %s: Could not open file", i+1, filename);
+            perror("\nError: ");
             exit(-1);
         }
         count = read(fd, buff, 2048);
