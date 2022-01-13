@@ -2,20 +2,30 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
+void print_from_CL();
+void print_files(int num_files, char *argv[]);
 
 int main(int argc, char *argv[]){
     int num_files = argc - 1;
 
-    char buff[2048];
-
     if(num_files == 0){
-        size_t count = read(0, buff, sizeof(buff));
-        write(1, buff, count);
-        close(0);
-        exit(0);
+        print_from_CL();
+    }else{
+        print_files(num_files, argv);
     }
+    
+}
+void print_from_CL(){
+    char buff[2048];
+    size_t count;
+    count = read(0, buff, sizeof(buff));
+    write(1, buff, count);
+}
+
+void print_files(int num_files, char *argv[]){
     char *filename;
     int fd;
+    char buff[2048];
     size_t count;
     for(int i = 0; i < num_files; i++){
         filename = argv[i+1];
